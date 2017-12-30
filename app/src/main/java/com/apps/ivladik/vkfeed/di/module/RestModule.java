@@ -1,6 +1,7 @@
 package com.apps.ivladik.vkfeed.di.module;
 
 import com.apps.ivladik.vkfeed.rest.RestClient;
+import com.apps.ivladik.vkfeed.rest.api.WallApi;
 
 import javax.inject.Singleton;
 
@@ -22,5 +23,11 @@ public class RestModule {
     @Provides
     public RestClient provideRestClient() {
         return mRestClient;
+    }
+
+    @Singleton
+    @Provides
+    public WallApi provideWallApi() {
+        return mRestClient.createService(WallApi.class);
     }
 }

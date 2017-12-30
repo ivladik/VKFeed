@@ -6,6 +6,7 @@ import com.apps.ivladik.vkfeed.di.module.RestModule;
 import com.apps.ivladik.vkfeed.ui.activity.BaseActivity;
 import com.apps.ivladik.vkfeed.ui.activity.MainActivity;
 import com.apps.ivladik.vkfeed.ui.fragment.BaseFragment;
+import com.apps.ivladik.vkfeed.ui.fragment.NewsFeedFragment;
 
 import javax.inject.Singleton;
 
@@ -19,4 +20,5 @@ import dagger.Component;
 public interface ApplicationComponent {
     void inject(BaseActivity activity);
     void inject(MainActivity activity);
+    void inject(NewsFeedFragment fragment);
 }
