@@ -11,6 +11,7 @@ import com.apps.ivladik.vkfeed.R;
 import com.apps.ivladik.vkfeed.consts.ApiConstants;
 import com.apps.ivladik.vkfeed.mvp.presenter.MainPresenter;
 import com.apps.ivladik.vkfeed.mvp.view.MainView;
+import com.apps.ivladik.vkfeed.ui.fragment.NewsFeedFragment;
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.vk.sdk.VKAccessToken;
@@ -63,5 +64,6 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     public void signedId() {
         Toast.makeText(this, "Current user id: " + CurrentUser.getId(), Toast.LENGTH_LONG).show();
+        setContent(new NewsFeedFragment());
     }
 }
