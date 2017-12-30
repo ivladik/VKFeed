@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.apps.ivladik.vkfeed.CurrentUser;
+import com.apps.ivladik.vkfeed.MyApplication;
 import com.apps.ivladik.vkfeed.R;
 import com.apps.ivladik.vkfeed.consts.ApiConstants;
 import com.apps.ivladik.vkfeed.mvp.presenter.MainPresenter;
@@ -29,7 +30,7 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        MyApplication.getApplicationComponent().inject(this);
         mPresenter.checkAuth();
     }
 
