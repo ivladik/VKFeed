@@ -6,4 +6,6 @@ package com.apps.ivladik.vkfeed.consts;
 
 public class ApiConstants {
     public static final String[] DEFAULT_LOGIN_SCOPE = {};
+    public static final Double DEFAULT_VERSION = 5.69;
+    public static final int DEFAULT_COUNT = 10;
 }
