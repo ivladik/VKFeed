@@ -4,19 +4,22 @@ package com.apps.ivladik.vkfeed.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.apps.ivladik.vkfeed.CurrentUser;
 import com.apps.ivladik.vkfeed.MyApplication;
 import com.apps.ivladik.vkfeed.R;
+import com.apps.ivladik.vkfeed.common.BaseAdapter;
+import com.apps.ivladik.vkfeed.model.WallItem;
+import com.apps.ivladik.vkfeed.model.view.NewsFeedItemBodyViewModel;
 import com.apps.ivladik.vkfeed.rest.api.WallApi;
 import com.apps.ivladik.vkfeed.rest.model.request.WallGetRequestModel;
-import com.apps.ivladik.vkfeed.rest.model.response.BaseItemResponse;
-import com.apps.ivladik.vkfeed.rest.model.response.Full;
 import com.apps.ivladik.vkfeed.rest.model.response.WallGetResponse;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -30,6 +33,9 @@ import retrofit2.Response;
 public class NewsFeedFragment extends BaseFragment {
     @Inject
     WallApi mWallApi;
+
+    RecyclerView mRecyclerView;
+    BaseAdapter mBaseAdapter;
 
     public NewsFeedFragment() {
         // Required empty public constructor
@@ -47,6 +53,13 @@ public class NewsFeedFragment extends BaseFragment {
         mWallApi.get(new WallGetRequestModel(-86529522).toMap()).enqueue(new Callback<WallGetResponse>() {
             @Override
             public void onResponse(Call<WallGetResponse> call, Response<WallGetResponse> response) {
+                List<NewsFeedItemBodyViewModel> list = new ArrayList<NewsFeedItemBodyViewModel>();
+                for (WallItem item : response.body().response.getItems()) {
+                    list.add(new NewsFeedItemBodyViewModel(item));
+                }
+
+                mBaseAdapter.addItems(list);
+
                 Toast.makeText(getActivity(), "Likes: " + response.body().response.getItems().get(0).getLikes().getCount(), Toast.LENGTH_LONG).show();
             }
 
@@ -67,4 +80,21 @@ public class NewsFeedFragment extends BaseFragment {
         return R.string.screen_name_news;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setUpRecyclerView(view);
+        setUpAdapter(mRecyclerView);
+    }
+
+    private void setUpRecyclerView(View rootView) {
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_list);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    private void setUpAdapter(RecyclerView recyclerView) {
+        mBaseAdapter = new BaseAdapter();
+
+        recyclerView.setAdapter(mBaseAdapter);
+    }
 }

@@ -21,7 +21,7 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder<BaseViewMod
 
     @Override
     public BaseViewHolder<BaseViewModel> onCreateViewHolder(ViewGroup parent, int viewType) {
-        return mTypeInstances.get(parent).createViewHolder(parent);
+        return mTypeInstances.get(viewType).createViewHolder(parent);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder<BaseViewMod
         }
     }
 
-    public void addItems(List<BaseViewModel> newItems) {
+    public void addItems(List<? extends BaseViewModel> newItems) {
         for (BaseViewModel newItem : newItems) {
             registerTypeInstance(newItem);
         }
