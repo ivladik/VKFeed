@@ -45,7 +45,6 @@ public class Profile implements Owner {
     @Expose
     private int hidden;
 
-
     public String getFirstName() {
         return firstName;
     }
