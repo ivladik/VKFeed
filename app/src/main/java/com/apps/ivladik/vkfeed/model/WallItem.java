@@ -1,11 +1,15 @@
 
 package com.apps.ivladik.vkfeed.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class WallItem {
+
+    public String senderName;
+    public String senderPhoto;
 
     @SerializedName("id")
     @Expose
@@ -34,6 +38,10 @@ public class WallItem {
     @SerializedName("attachments")
     @Expose
     private List<Attachment> attachments = null;
+
+    @SerializedName("copy_history")
+    @Expose
+    private List<WallItem> copyHistory = new ArrayList<>();
     @SerializedName("post_source")
     @Expose
     private PostSource postSource;
@@ -162,4 +170,27 @@ public class WallItem {
         this.views = views;
     }
 
+    public String getSenderName() {
+        return senderName;
+    }
+
+    public void setSenderName(String senderName) {
+        this.senderName = senderName;
+    }
+
+    public String getSenderPhoto() {
+        return senderPhoto;
+    }
+
+    public void setSenderPhoto(String senderPhoto) {
+        this.senderPhoto = senderPhoto;
+    }
+
+    public boolean haveSharedRepost() {
+        return copyHistory.size() > 0;
+    }
+
+    public WallItem getSharedRepost() {
+        return haveSharedRepost() ? copyHistory.get(0) : null;
+    }
 }
