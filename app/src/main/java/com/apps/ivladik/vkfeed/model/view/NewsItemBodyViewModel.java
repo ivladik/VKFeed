@@ -10,11 +10,11 @@ import com.apps.ivladik.vkfeed.ui.holder.NewsItemBodyHolder;
  * Created by admin on 09.01.2018.
  */
 
-public class NewsFeedItemBodyViewModel extends BaseViewModel {
+public class NewsItemBodyViewModel extends BaseViewModel {
     private int mId;
     private String mText;
 
-    public NewsFeedItemBodyViewModel(WallItem wallItem) {
+    public NewsItemBodyViewModel(WallItem wallItem) {
         this.mId = wallItem.getId();
         this.mText = wallItem.getText();
     }

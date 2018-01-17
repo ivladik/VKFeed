@@ -12,8 +12,11 @@ import android.widget.Toast;
 import com.apps.ivladik.vkfeed.MyApplication;
 import com.apps.ivladik.vkfeed.R;
 import com.apps.ivladik.vkfeed.common.BaseAdapter;
+import com.apps.ivladik.vkfeed.common.utils.VkListHelper;
 import com.apps.ivladik.vkfeed.model.WallItem;
-import com.apps.ivladik.vkfeed.model.view.NewsFeedItemBodyViewModel;
+import com.apps.ivladik.vkfeed.model.view.BaseViewModel;
+import com.apps.ivladik.vkfeed.model.view.NewsItemBodyViewModel;
+import com.apps.ivladik.vkfeed.model.view.NewsItemHeaderViewModel;
 import com.apps.ivladik.vkfeed.rest.api.WallApi;
 import com.apps.ivladik.vkfeed.rest.model.request.WallGetRequestModel;
 import com.apps.ivladik.vkfeed.rest.model.response.WallGetResponse;
@@ -53,9 +56,12 @@ public class NewsFeedFragment extends BaseFragment {
         mWallApi.get(new WallGetRequestModel(-86529522).toMap()).enqueue(new Callback<WallGetResponse>() {
             @Override
             public void onResponse(Call<WallGetResponse> call, Response<WallGetResponse> response) {
-                List<NewsFeedItemBodyViewModel> list = new ArrayList<NewsFeedItemBodyViewModel>();
-                for (WallItem item : response.body().response.getItems()) {
-                    list.add(new NewsFeedItemBodyViewModel(item));
+                List<WallItem> wallItems = VkListHelper.getWallList(response.body().response);
+                List<BaseViewModel> list = new ArrayList<>();
+
+                for (WallItem item : wallItems) {
+                    list.add(new NewsItemHeaderViewModel(item));
+                    list.add(new NewsItemBodyViewModel(item));
                 }
 
                 mBaseAdapter.addItems(list);

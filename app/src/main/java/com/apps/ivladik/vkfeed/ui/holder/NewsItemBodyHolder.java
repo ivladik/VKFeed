@@ -4,13 +4,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.apps.ivladik.vkfeed.R;
-import com.apps.ivladik.vkfeed.model.view.NewsFeedItemBodyViewModel;
+import com.apps.ivladik.vkfeed.model.view.NewsItemBodyViewModel;
 
 /**
  * Created by admin on 09.01.2018.
  */
 
-public class NewsItemBodyHolder extends BaseViewHolder<NewsFeedItemBodyViewModel> {
+public class NewsItemBodyHolder extends BaseViewHolder<NewsItemBodyViewModel> {
     public TextView mTextView;
 
     public NewsItemBodyHolder(View itemView) {
@@ -20,8 +20,8 @@ public class NewsItemBodyHolder extends BaseViewHolder<NewsFeedItemBodyViewModel
     }
 
     @Override
-    public void bindViewHolder(NewsFeedItemBodyViewModel newsFeedItemBodyViewModel) {
-        mTextView.setText(newsFeedItemBodyViewModel.getText());
+    public void bindViewHolder(NewsItemBodyViewModel newsItemBodyViewModel) {
+        mTextView.setText(newsItemBodyViewModel.getText());
     }
 
     @Override

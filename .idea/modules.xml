@@ -4,10 +4,8 @@
     <modules>
       <module fileurl="file://C:\Users\d.ilyin\AndroidStudioProjects\VKFeed\AndroidStudioProjects-VKFeed.iml" filepath="C:\Users\d.ilyin\AndroidStudioProjects\VKFeed\AndroidStudioProjects-VKFeed.iml" />
       <module fileurl="file://$PROJECT_DIR$/VKFeed.iml" filepath="$PROJECT_DIR$/VKFeed.iml" />
-      <module fileurl="file://C:\Users\d.ilyin\AndroidStudioProjects\VKFeed\VKFeed.iml" filepath="C:\Users\d.ilyin\AndroidStudioProjects\VKFeed\VKFeed.iml" />
       <module fileurl="file://C:\Users\d.ilyin\AndroidStudioProjects\VKFeed\app\VKFeed-app.iml" filepath="C:\Users\d.ilyin\AndroidStudioProjects\VKFeed\app\VKFeed-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\d.ilyin\AndroidStudioProjects\VKFeed\app\app.iml" filepath="C:\Users\d.ilyin\AndroidStudioProjects\VKFeed\app\app.iml" />
     </modules>
   </component>
 </project>
