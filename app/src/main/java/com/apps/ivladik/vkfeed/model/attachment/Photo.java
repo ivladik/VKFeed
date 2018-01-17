@@ -1,11 +1,14 @@
-
-package com.apps.ivladik.vkfeed.model;
+package com.apps.ivladik.vkfeed.model.attachment;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.vk.sdk.api.model.VKAttachments;
 
-public class Photo {
+/**
+ * Created by d.ilyin on 17.01.2018.
+ */
 
+public class Photo implements Attachment {
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -49,7 +52,7 @@ public class Photo {
     @Expose
     private String accessKey;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -161,4 +164,8 @@ public class Photo {
         this.accessKey = accessKey;
     }
 
+    @Override
+    public String getType() {
+        return VKAttachments.TYPE_PHOTO;
+    }
 }

@@ -3,6 +3,8 @@ package com.apps.ivladik.vkfeed.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.apps.ivladik.vkfeed.model.attachment.ApiAttachment;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -37,7 +39,7 @@ public class WallItem {
     private Integer canPin;
     @SerializedName("attachments")
     @Expose
-    private List<Attachment> attachments = null;
+    private List<ApiAttachment> attachments = null;
 
     @SerializedName("copy_history")
     @Expose
@@ -122,11 +124,11 @@ public class WallItem {
         this.canPin = canPin;
     }
 
-    public List<Attachment> getAttachments() {
+    public List<ApiAttachment> getAttachments() {
         return attachments;
     }
 
-    public void setAttachments(List<Attachment> attachments) {
+    public void setAttachments(List<ApiAttachment> attachments) {
         this.attachments = attachments;
     }
 
