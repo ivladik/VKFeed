@@ -1,17 +1,18 @@
 
 package com.apps.ivladik.vkfeed.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.apps.ivladik.vkfeed.model.attachment.ApiAttachment;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class WallItem {
 
-    public String senderName;
-    public String senderPhoto;
+    private String attachmentString;
+    private String senderName;
+    private String senderPhoto;
 
     @SerializedName("id")
     @Expose
@@ -59,6 +60,14 @@ public class WallItem {
     @SerializedName("views")
     @Expose
     private Views views;
+
+    public String getAttachmentString() {
+        return attachmentString;
+    }
+
+    public void setAttachmentString(String attachmentString) {
+        this.attachmentString = attachmentString;
+    }
 
     public Integer getId() {
         return id;

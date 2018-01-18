@@ -11,12 +11,23 @@ import com.apps.ivladik.vkfeed.ui.holder.NewsItemBodyHolder;
  */
 
 public class NewsItemBodyViewModel extends BaseViewModel {
+
     private int mId;
     private String mText;
+    private String mAttachmentString;
+    private boolean mIsRepost;
 
     public NewsItemBodyViewModel(WallItem wallItem) {
         this.mId = wallItem.getId();
-        this.mText = wallItem.getText();
+        this.mIsRepost = wallItem.haveSharedRepost();
+
+        if (mIsRepost) {
+            this.mText = wallItem.getSharedRepost().getText();
+            this.mAttachmentString = wallItem.getSharedRepost().getAttachmentString();
+        } else {
+            this.mText = wallItem.getText();
+            this.mAttachmentString = wallItem.getAttachmentString();
+        }
     }
 
     @Override
@@ -35,5 +46,9 @@ public class NewsItemBodyViewModel extends BaseViewModel {
 
     public String getText() {
         return mText;
+    }
+
+    public String getAttachmentString() {
+        return mAttachmentString;
     }
 }
