@@ -58,29 +58,6 @@ public class NewsFeedFragment extends BaseFeedFragment {
                 .subscribe(baseViewModels -> mBaseAdapter.addItems(baseViewModels));
     }
 
-    /*enqueue(new Callback<WallGetResponse>() {
-        @Override
-        public void onResponse(Call<WallGetResponse> call, Response<WallGetResponse> response) {
-            List<WallItem> wallItems = VkListHelper.getWallList(response.body().response);
-            List<BaseViewModel> list = new ArrayList<>();
-
-            for (WallItem item : wallItems) {
-                list.add(new NewsItemHeaderViewModel(item));
-                list.add(new NewsItemBodyViewModel(item));
-                list.add(new NewsItemFooterViewModel(item));
-            }
-
-            mBaseAdapter.addItems(list);
-
-            Toast.makeText(getActivity(), "Likes: " + response.body().response.getItems().get(0).getLikes().getCount(), Toast.LENGTH_LONG).show();
-        }
-
-        @Override
-        public void onFailure(Call<WallGetResponse> call, Throwable t) {
-            t.printStackTrace();
-        }
-    });*/
-
     @Override
     public int onCreateToolbarTitle() {
         return R.string.screen_name_news;
