@@ -51,7 +51,7 @@ public class Utils {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy в H.mm", currentLocale);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy в H:mm", currentLocale);
 
         if (calendar.get(Calendar.DAY_OF_YEAR) == Calendar.getInstance().get(Calendar.DAY_OF_YEAR)
                 && calendar.get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR)) {
