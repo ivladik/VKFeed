@@ -7,6 +7,7 @@ import com.apps.ivladik.vkfeed.ui.activity.BaseActivity;
 import com.apps.ivladik.vkfeed.ui.activity.MainActivity;
 import com.apps.ivladik.vkfeed.ui.fragment.NewsFeedFragment;
 import com.apps.ivladik.vkfeed.ui.holder.NewsItemBodyHolder;
+import com.apps.ivladik.vkfeed.ui.holder.NewsItemFooterHolder;
 
 import javax.inject.Singleton;
 
@@ -25,4 +26,6 @@ public interface ApplicationComponent {
     void inject(NewsFeedFragment fragment);
 
     void inject(NewsItemBodyHolder holder);
+
+    void inject(NewsItemFooterHolder holder);
 }

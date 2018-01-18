@@ -16,6 +16,7 @@ import com.apps.ivladik.vkfeed.common.utils.VkListHelper;
 import com.apps.ivladik.vkfeed.model.WallItem;
 import com.apps.ivladik.vkfeed.model.view.BaseViewModel;
 import com.apps.ivladik.vkfeed.model.view.NewsItemBodyViewModel;
+import com.apps.ivladik.vkfeed.model.view.NewsItemFooterViewModel;
 import com.apps.ivladik.vkfeed.model.view.NewsItemHeaderViewModel;
 import com.apps.ivladik.vkfeed.rest.api.WallApi;
 import com.apps.ivladik.vkfeed.rest.model.request.WallGetRequestModel;
@@ -62,6 +63,7 @@ public class NewsFeedFragment extends BaseFragment {
                 for (WallItem item : wallItems) {
                     list.add(new NewsItemHeaderViewModel(item));
                     list.add(new NewsItemBodyViewModel(item));
+                    list.add(new NewsItemFooterViewModel(item));
                 }
 
                 mBaseAdapter.addItems(list);
