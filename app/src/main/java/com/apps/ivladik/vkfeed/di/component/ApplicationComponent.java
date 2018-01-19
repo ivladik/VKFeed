@@ -3,6 +3,7 @@ package com.apps.ivladik.vkfeed.di.component;
 import com.apps.ivladik.vkfeed.di.module.ApplicationModule;
 import com.apps.ivladik.vkfeed.di.module.ManagerModule;
 import com.apps.ivladik.vkfeed.di.module.RestModule;
+import com.apps.ivladik.vkfeed.mvp.presenter.NewsFeedPresenter;
 import com.apps.ivladik.vkfeed.ui.activity.BaseActivity;
 import com.apps.ivladik.vkfeed.ui.activity.MainActivity;
 import com.apps.ivladik.vkfeed.ui.fragment.NewsFeedFragment;
@@ -28,4 +29,6 @@ public interface ApplicationComponent {
     void inject(NewsItemBodyHolder holder);
 
     void inject(NewsItemFooterHolder holder);
+
+    void inject(NewsFeedPresenter presenter);
 }

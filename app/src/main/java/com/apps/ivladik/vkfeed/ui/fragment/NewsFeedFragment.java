@@ -7,22 +7,12 @@ import android.support.v4.app.Fragment;
 
 import com.apps.ivladik.vkfeed.MyApplication;
 import com.apps.ivladik.vkfeed.R;
-import com.apps.ivladik.vkfeed.common.utils.VkListHelper;
-import com.apps.ivladik.vkfeed.model.view.BaseViewModel;
-import com.apps.ivladik.vkfeed.model.view.NewsItemBodyViewModel;
-import com.apps.ivladik.vkfeed.model.view.NewsItemFooterViewModel;
-import com.apps.ivladik.vkfeed.model.view.NewsItemHeaderViewModel;
+import com.apps.ivladik.vkfeed.mvp.presenter.BaseFeedPresenter;
+import com.apps.ivladik.vkfeed.mvp.presenter.NewsFeedPresenter;
 import com.apps.ivladik.vkfeed.rest.api.WallApi;
-import com.apps.ivladik.vkfeed.rest.model.request.WallGetRequestModel;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.arellomobile.mvp.presenter.InjectPresenter;
 
 import javax.inject.Inject;
-
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +20,9 @@ import io.reactivex.schedulers.Schedulers;
 public class NewsFeedFragment extends BaseFeedFragment {
     @Inject
     WallApi mWallApi;
+
+    @InjectPresenter
+    NewsFeedPresenter mPresenter;
 
     public NewsFeedFragment() {
         // Required empty public constructor
@@ -44,22 +37,15 @@ public class NewsFeedFragment extends BaseFeedFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mWallApi.get(new WallGetRequestModel(-86529522).toMap()).flatMap(wallGetResponse -> Observable.fromIterable(VkListHelper.getWallList(wallGetResponse.response)))
-                .flatMap(wallItem -> {
-                    List<BaseViewModel> baseItems = new ArrayList<>();
-                    baseItems.add(new NewsItemHeaderViewModel(wallItem));
-                    baseItems.add(new NewsItemBodyViewModel(wallItem));
-                    baseItems.add(new NewsItemFooterViewModel(wallItem));
-                    return Observable.fromIterable(baseItems);
-                })
-                .toList()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(baseViewModels -> mBaseAdapter.addItems(baseViewModels));
     }
 
     @Override
     public int onCreateToolbarTitle() {
         return R.string.screen_name_news;
+    }
+
+    @Override
+    protected BaseFeedPresenter onCreateFeedPresenter() {
+        return mPresenter;
     }
 }
