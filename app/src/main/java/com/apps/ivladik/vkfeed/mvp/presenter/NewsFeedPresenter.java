@@ -35,7 +35,7 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView> {
 
     @Override
     public Observable<BaseViewModel> onCreateLoadDataObservable(int count, int offset) {
-        return mWallApi.get(new WallGetRequestModel(-86529522).toMap())
+        return mWallApi.get(new WallGetRequestModel(-86529522, count, offset).toMap())
                 .flatMap(wallGetResponse -> Observable.fromIterable(VkListHelper.getWallList(wallGetResponse.response)))
                 .flatMap(wallItem -> {
                     List<BaseViewModel> baseItems = new ArrayList<>();
