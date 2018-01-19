@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 
 import com.apps.ivladik.vkfeed.MyApplication;
 import com.apps.ivladik.vkfeed.R;
@@ -18,6 +19,8 @@ import javax.inject.Inject;
  */
 
 public abstract class BaseActivity extends MvpAppCompatActivity {
+
+    protected ProgressBar mProgressBar;
     @Inject
     MyFragmentManager myFragmentManager;
 
@@ -27,11 +30,17 @@ public abstract class BaseActivity extends MvpAppCompatActivity {
         MyApplication.getApplicationComponent().inject(this);
         setContentView(R.layout.activity_base);
 
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FrameLayout parent = (FrameLayout) findViewById(R.id.main_wrapper);
         getLayoutInflater().inflate(getMainContentLayout(), parent);
+    }
+
+    public ProgressBar getProgressBar() {
+        return mProgressBar;
     }
 
     @LayoutRes
