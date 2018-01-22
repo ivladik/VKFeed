@@ -8,12 +8,17 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WallItem {
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class WallItem extends RealmObject {
 
     private String attachmentString;
     private String senderName;
     private String senderPhoto;
 
+    @PrimaryKey
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -40,11 +45,11 @@ public class WallItem {
     private Integer canPin;
     @SerializedName("attachments")
     @Expose
-    private List<ApiAttachment> attachments = null;
+    private RealmList<ApiAttachment> attachments = new RealmList<>();
 
     @SerializedName("copy_history")
     @Expose
-    private List<WallItem> copyHistory = new ArrayList<>();
+    private RealmList<WallItem> copyHistory = new RealmList<>();
     @SerializedName("post_source")
     @Expose
     private PostSource postSource;
@@ -133,11 +138,11 @@ public class WallItem {
         this.canPin = canPin;
     }
 
-    public List<ApiAttachment> getAttachments() {
+    public RealmList<ApiAttachment> getAttachments() {
         return attachments;
     }
 
-    public void setAttachments(List<ApiAttachment> attachments) {
+    public void setAttachments(RealmList<ApiAttachment> attachments) {
         this.attachments = attachments;
     }
 

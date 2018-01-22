@@ -1,5 +1,6 @@
 package com.apps.ivladik.vkfeed.di.component;
 
+import com.apps.ivladik.vkfeed.common.manager.NetworkManager;
 import com.apps.ivladik.vkfeed.di.module.ApplicationModule;
 import com.apps.ivladik.vkfeed.di.module.ManagerModule;
 import com.apps.ivladik.vkfeed.di.module.RestModule;
@@ -31,4 +32,6 @@ public interface ApplicationComponent {
     void inject(NewsItemFooterHolder holder);
 
     void inject(NewsFeedPresenter presenter);
+
+    void inject(NetworkManager manager);
 }

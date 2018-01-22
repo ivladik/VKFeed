@@ -7,6 +7,9 @@ import com.apps.ivladik.vkfeed.di.component.DaggerApplicationComponent;
 import com.apps.ivladik.vkfeed.di.module.ApplicationModule;
 import com.vk.sdk.VKSdk;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
 /**
  * Created by admin on 28.12.2017.
  */
@@ -17,8 +20,17 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         initComponent();
+
         VKSdk.initialize(this);
+
+        Realm.init(this);
+        RealmConfiguration realmConfiguration = new RealmConfiguration
+                .Builder()
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        Realm.setDefaultConfiguration(realmConfiguration);
     }
 
     private void initComponent() {

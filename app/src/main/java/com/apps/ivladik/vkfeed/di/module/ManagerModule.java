@@ -1,6 +1,7 @@
 package com.apps.ivladik.vkfeed.di.module;
 
 import com.apps.ivladik.vkfeed.common.manager.MyFragmentManager;
+import com.apps.ivladik.vkfeed.common.manager.NetworkManager;
 
 import javax.inject.Singleton;
 
@@ -16,5 +17,11 @@ public class ManagerModule {
     @Provides
     MyFragmentManager provideMyFragmentManager() {
         return new MyFragmentManager();
+    }
+
+    @Provides
+    @Singleton
+    NetworkManager providesNetworkManager() {
+        return new NetworkManager();
     }
 }
